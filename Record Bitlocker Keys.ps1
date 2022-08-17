@@ -1,6 +1,8 @@
 <#
     Get Bitlocker Recovery Key(s) and store them in a custom field called "Drive Encryption Keys"
-    This script requires no input; it will find all encrypted drives on it's own
+    This script requires no input; it will find all encrypted drives on it's own.
+    The ones in the community repo require pre-knowledge of which drives to review: 
+    https://admin.syncromsp.com/shared_scripts?utf8=%E2%9C%93&search%5Btext_query%5D=bitlocker&commit=Search
     
     Set up a custom asset field called "Drive Encryption Keys" as a "Text AREA" on
     your Syncro Device asset type. https://admin.syncromsp.com/asset_types/173088/asset_fields

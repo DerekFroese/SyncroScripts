@@ -3,11 +3,11 @@
     If there is a change, it fires an RMM Alert
     
     Make a "Text Area" Asset Custom Variable called "Local Admins" https://admin.syncromsp.com/asset_types/173088/asset_fields
+    and load it into this script as $localAdminsString
     If you have a script that installs a local admin account on client machines, 
     make sure it is in the "Setup Scripts" part of your policy so that it will 
     run first and not trip this alert if this script ends up running before that one. 
 
-    By Derek Froese https://www.linkedin.com/in/derekfroese/
 #>
 
 Write-Output "$(get-date -Format 'HH:mm:ss') Starting Script"

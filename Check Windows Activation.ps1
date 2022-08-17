@@ -1,5 +1,6 @@
 <#
     This is handy to run as a setup script in a policy
+    Throws an RMM alert of machine is unactivated
     Ripped from https://social.technet.microsoft.com/wiki/contents/articles/5675.powershell-determine-windows-license-activation-status.aspx
     Updated By Derek Froese, https://www.linkedin.com/in/derekfroese/
 #>

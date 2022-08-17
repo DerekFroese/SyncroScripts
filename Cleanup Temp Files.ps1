@@ -2,6 +2,11 @@
     This is handy to set as an autoremediation. https://admin.syncromsp.com/rmm_automations
     Use trigger low_hd_space_trigger
     By Derek Froese, https://www.linkedin.com/in/derekfroese/
+    
+    #TODO In future version, incorporate Patch Cleaner? http://www.homedev.com.au/Free/PatchCleaner
+    #TODO or this?: https://msdn.microsoft.com/en-us/library/windows/desktop/aa370523(v=vs.85).aspx
+    #TODO Or Storage Sense?
+    
 #>
 
 Write-Output "$(get-date -Format 'HH:mm:ss') Starting Script"   
@@ -66,6 +71,3 @@ Write-Output "$(get-date -Format 'HH:mm:ss') ###After:###"
 Get-PSDrive $env:SystemDrive.Substring(0,1) | Select-Object Name,@{Label="Used_GB";Expression={[int]($_.Used/1GB)}},@{Label="Free_GB";Expression={[Int]($_.Free/1GB)}}
 
 Write-Output "$(get-date -Format 'HH:mm:ss') Script complete"   
-
-#In future version, incorporate Patch Cleaner? http://www.homedev.com.au/Free/PatchCleaner
-#or this?: https://msdn.microsoft.com/en-us/library/windows/desktop/aa370523(v=vs.85).aspx

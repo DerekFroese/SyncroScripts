@@ -1,4 +1,7 @@
-#By Derek Froese, https://www.linkedin.com/in/derekfroese/
+<# 
+    This is handy to set as am autoremediation. https://admin.syncromsp.com/rmm_automations
+    By Derek Froese, https://www.linkedin.com/in/derekfroese/
+#>
 
 Write-Output "$(get-date -Format 'HH:mm:ss') Starting Script"   
 
@@ -53,7 +56,7 @@ cleanmgr.exe /d $($env:SystemDrive.Substring(0,1)) /AUTOCLEAN
 #Shadow Copies
 Write-Output "$(get-date -Format 'HH:mm:ss') Cleaning shadow copies"   
 Vssadmin list shadowstorage 
-
+#gotta finish this.
 
 ###Display current state of affairs
 Write-Output "$(get-date -Format 'HH:mm:ss') ###After:###"

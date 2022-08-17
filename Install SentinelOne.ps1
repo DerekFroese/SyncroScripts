@@ -1,9 +1,13 @@
 <# 
     Create a Customer Custom Variable called "SentinelOne Site Token" of type "Text Field" https://admin.syncromsp.com/customer_fields
+    Load it into this script as $siteToken
     Remember to upload your SentinelOne installer as a Script File with an exe file extension, and have it download to the location defined in $Exe
     Remember to populate the SentinelOne Site Token for each customer and add its population to your onboarding SOP
     You may want to add it as a startup script to policies that include AV
+    
     I recommend that any policy that includes AV installer also has a process or service monitor to make sure AV is running.
+    https://admin.syncromsp.com/ps_monitor_policies
+    In this case, monitor services: SentinelAgent , SentinelHelperService
 
     Written by Derek Froese https://www.linkedin.com/in/derekfroese/
 

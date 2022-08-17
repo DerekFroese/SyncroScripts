@@ -1,5 +1,6 @@
 <# 
     This is handy to set as am autoremediation. https://admin.syncromsp.com/rmm_automations
+    Use trigger low_hd_space_trigger
     By Derek Froese, https://www.linkedin.com/in/derekfroese/
 #>
 

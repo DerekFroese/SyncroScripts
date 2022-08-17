@@ -7,6 +7,7 @@
     make sure it is in the "Setup Scripts" part of your policy so that it will 
     run first and not trip this alert if this script ends up running before that one. 
 
+    By Derek Froese https://www.linkedin.com/in/derekfroese/
 #>
 
 Write-Output "$(get-date -Format 'HH:mm:ss') Starting Script"

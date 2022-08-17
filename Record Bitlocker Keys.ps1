@@ -16,7 +16,7 @@
 Write-Output "$(get-date -Format "HH:mm:ss") Starting Script"   
 Import-Module $env:SyncroModule
 
-Write-Output "$(get-date -Format "HH:mm:ss") Getting Drivess" 
+Write-Output "$(get-date -Format "HH:mm:ss") Getting Drives" 
 $Drives = Get-WmiObject Win32_Volume | Where { $_.DriveType -Match "[23]" } | Select Name, Label, DeviceID, DriveLetter, DriveType
 $Drives | Add-Member -NotePropertyName BitlockerStatus -NotePropertyValue "0"
 $Drives | Add-Member -NotePropertyName BitlockerKey -NotePropertyValue "0"

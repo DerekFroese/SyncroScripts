@@ -2,9 +2,9 @@
     Sets machine-wide backup of docs, desktop, pics to OneDrive for Business (365)
     Create a Customer Custom Field called "365 Tenant ID" https://admin.syncromsp.com/customer_fields
     
-    
     By Derek Froese, https://www.linkedin.com/in/derekfroese/
     
+    #TODO In a policy, should be paired with monitoring OneDrive for errors
     #TODO would be cleaner to do this with a custom PSObject or at least array, then iterate through them. Scales to more registry keys that way 
 
 #>

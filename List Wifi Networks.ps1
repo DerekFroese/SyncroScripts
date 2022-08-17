@@ -2,7 +2,7 @@
     lists wi-fi networks and their passwords
     Stolen from https://gist.github.com/willjobs/8d78fa8bb5de69b1143da6933761a71f
     
-    By Derek Froese, https://www.linkedin.com/in/derekfroese/
+    Formatted for Syncro By Derek Froese, https://www.linkedin.com/in/derekfroese/
 #>
 
 Write-Output "$(get-date -Format "HH:mm:ss") Starting Script"

@@ -1,5 +1,5 @@
 <#
-    This is handy to run as a startup script in a policy
+    This is handy to run as a setup script in a policy
     By Derek Froese, https://www.linkedin.com/in/derekfroese/
 #>
 

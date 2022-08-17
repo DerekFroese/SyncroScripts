@@ -1,6 +1,7 @@
 <#
     This is handy to run as a setup script in a policy
-    By Derek Froese, https://www.linkedin.com/in/derekfroese/
+    Ripped from https://social.technet.microsoft.com/wiki/contents/articles/5675.powershell-determine-windows-license-activation-status.aspx
+    Updated By Derek Froese, https://www.linkedin.com/in/derekfroese/
 #>
 
 Write-Output "$(get-date -Format 'HH:mm:ss') Starting Script"   

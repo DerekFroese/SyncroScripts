@@ -52,6 +52,8 @@ schtasks.exe /Run /TN "\Microsoft\Windows\Servicing\StartComponentCleanup"
 # ^ is not as safe as the schtasks method.
 
 Write-Output "$(get-date -Format 'HH:mm:ss') Running Clean Manager"   
+#cleanmgr /verylowdisk
+#cleanmgr.exe /AUTOCLEAN
 cleanmgr.exe /d $($env:SystemDrive.Substring(0,1)) /AUTOCLEAN
 
 #Shadow Copies

@@ -11,6 +11,8 @@
     By Derek Froese https://www.linkedin.com/in/derekfroese/
     Modified through discussion with Beau:
     https://www.facebook.com/groups/syncromspusers/posts/1488619958276643/?comment_id=1488706401601332&reply_comment_id=1488889278249711
+    
+    #TODO this script shows as error when run in Syncro even though it runs fine. Could put in a Try/catch for "manage-bde -status"
 #>
 
 Write-Output "$(get-date -Format "HH:mm:ss") Starting Script"   

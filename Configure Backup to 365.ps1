@@ -4,7 +4,7 @@
     
     By Derek Froese, https://www.linkedin.com/in/derekfroese/
     
-    #TODO In a policy, should be paired with monitoring OneDrive for errors
+    #TODO In a policy, should be paired with monitoring OneDrive for errors. OneDrive doesn't write errors to the event log but to a file, so parsing will be annoying.
     #TODO would be cleaner to do this with a custom PSObject or at least array, then iterate through them. Scales to more registry keys that way 
 
 #>

@@ -6,7 +6,13 @@
 #>
 
 Write-Output "$(get-date -Format "HH:mm:ss") Starting Script"
-$wifiNetworks = (netsh wlan show profiles) | Select-String "\:(.+)$" | %{$name=$_.Matches.Groups[1].Value.Trim(); $_} | %{(netsh wlan show profile name="$name" key=clear)}  | Select-String "Key Content\W+\:(.+)$" | %{$pass=$_.Matches.Groups[1].Value.Trim(); $_} | %{[PSCustomObject]@{ PROFILE_NAME=$name;PASSWORD=$pass }}
+$wifiNetworks = (netsh wlan show profiles) | 
+    Select-String "\:(.+)$" | 
+    %{$name=$_.Matches.Groups[1].Value.Trim(); $_} | 
+    %{(netsh wlan show profile name="$name" key=clear)}  | 
+    Select-String "Key Content\W+\:(.+)$" | 
+    %{$pass=$_.Matches.Groups[1].Value.Trim(); $_} | 
+    %{[PSCustomObject]@{ PROFILE_NAME=$name;PASSWORD=$pass }}
 $wifiNetworks | Format-Table -AutoSize 
 
 Write-Output "`n$(get-date -Format "HH:mm:ss") Script Complete"

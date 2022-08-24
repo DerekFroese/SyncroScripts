@@ -6,6 +6,7 @@
     #TODO In future version, incorporate Patch Cleaner? http://www.homedev.com.au/Free/PatchCleaner
     #TODO or this?: https://msdn.microsoft.com/en-us/library/windows/desktop/aa370523(v=vs.85).aspx
     #TODO Or Storage Sense?
+    #TODO clean up shadowcopies
     
 #>
 

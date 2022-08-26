@@ -65,4 +65,6 @@ foreach ($Drive in $Drives) {
 Set-Asset-Field -Name "Drive Encryption Keys" -Value $Summary
 Write-Output "$(get-date -Format "HH:mm:ss") Set the custom field value to `n $Summary"
 
-Write-Output "$(get-date -Format "HH:mm:ss") Script Complete"   
+Write-Output "$(get-date -Format "HH:mm:ss") Script Complete"
+#Syncro shows a Failure on this script unless there's an explicit clean exit. I don't know why and Syncro Support doesn't know why.
+exit 0

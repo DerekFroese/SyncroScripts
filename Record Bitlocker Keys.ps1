@@ -19,6 +19,8 @@ Write-Output "$(get-date -Format "HH:mm:ss") Starting Script"
 Import-Module $env:SyncroModule
 
 Write-Output "$(get-date -Format "HH:mm:ss") Getting Drives" 
+
+#Could use Get-PSDrive here, but that won't get unmounted drives
 $Drives = Get-WmiObject Win32_Volume | Where { $_.DriveType -Match "[23]" } #| Select Name, Label, DeviceID, DriveLetter, DriveType
 $Drives | Add-Member -NotePropertyName BitlockerStatus -NotePropertyValue "0"
 $Drives | Add-Member -NotePropertyName BitlockerKey -NotePropertyValue "0"
@@ -54,7 +56,7 @@ Write-Output $($Drives | ft -autosize DriveLetter, Label, DriveType, BitlockerSt
 
 Write-Output "$(get-date -Format "HH:mm:ss") Updating Asset Field"
 #$Summary = $Drives | ? {$_.BitlockerStatus -notlike "inaccessible"} | ft -autosize Nickname,BitlockerKey |  Out-String
-#Syncro formats PS objects weird, so we'll make our own string.
+#Syncro formats PS objects weird, so we'll make our own string:
 $Summary = "Bitlocker Keys:`n"
 foreach ($Drive in $Drives) {
     if ($Drive.BitlockerStatus -notlike "inaccessible") {

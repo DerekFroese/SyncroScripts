@@ -34,9 +34,9 @@ Write-Output "$(get-date -Format 'HH:mm:ss') Iterating through users"
 foreach($user in $users) {
     $username = $user | Select -ExpandProperty Name;
     Write-Output "$(get-date -Format 'HH:mm:ss') Reviewing $username"
-    $user.userFolderSize = Get-ChildItem -Recurse -Force -errorAction SilentlyContinue $($user.FullName) | Measure-Object -Sum Length  -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Sum;;
-    $user.desktopFolderSize = Get-ChildItem -Recurse -Force -errorAction SilentlyContinue $($user.FullName)\Desktop | Measure-Object -Sum Length  -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Sum;
-    $user.documentsFolderSize = Get-ChildItem -Recurse -Force -errorAction SilentlyContinue $($user.FullName)\Documents | ? {$FilterOut -NotContains $_.Name} | Measure-Object -Sum Length -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Sum;
+    $user.userFolderSize = Get-ChildItem -Recurse -Force -errorAction SilentlyContinue "$($user.FullName)" | Measure-Object -Sum Length  -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Sum;
+    $user.desktopFolderSize = Get-ChildItem -Recurse -Force -errorAction SilentlyContinue "$($user.FullName)\Desktop" | Measure-Object -Sum Length  -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Sum;
+    $user.documentsFolderSize = Get-ChildItem -Recurse -Force -errorAction SilentlyContinue "$($user.FullName)\Documents" | ? {$FilterOut -NotContains $_.Name} | Measure-Object -Sum Length -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Sum;
 }
 Write-Output "$(get-date -Format 'HH:mm:ss') Done reviewing users"
 
@@ -52,11 +52,11 @@ $usersPretty = $users | format-table `
 $usersString = $usersPretty | Out-String
 
 Write-Output $usersPretty
-Write-Output "$(get-date -Format 'HH:mm:ss') C:\users is $($UserFolderSizeGB.ToString("#.##")) GB"
+Write-Output "$(get-date -Format 'HH:mm:ss') C:\users is $($UserFolderSizeGB.ToString('#.##')) GB"
 
 if ($ticketNumber) {
     Write-Output "$(get-date -Format 'HH:mm:ss') Adding info to ticket $ticketNumber"
-    Create-Syncro-Ticket-Comment -TicketIdOrNumber $ticketNumber -Subject "Results" -Body "$($env:COMPUTERNAME) `n C:\users is $($UserFolderSizeGB.ToString("#.##")) GB `n $usersString" -Hidden $True -DoNotEmail $True
+    Create-Syncro-Ticket-Comment -TicketIdOrNumber $ticketNumber -Subject "Results" -Body "$($env:COMPUTERNAME) `n C:\users is $($UserFolderSizeGB.ToString('#.##')) GB `n $usersString" -Hidden $True -DoNotEmail $True
     Write-Output "$(get-date -Format 'HH:mm:ss') Done updating ticket $ticketNumber"
 }
 

@@ -46,19 +46,23 @@ $usersPretty = $users | format-table `
     @{Label="User Folder [GB]"; Expression= {($_.userFolderSize/1GB).tostring("#.##")}},
     @{Label="Desktop [GB]"; Expression= {$($_.desktopFoldersize/1GB).tostring("#.##")}},
     @{Label="Documents [GB]"; Expression= {$($_.documentsFolderSize/1GB).tostring("#.##")}}
+#   @{Label="Path"; Expression= {$_.FullName}}   #append comma to preceding line if you uncomment this
 
-$usersPretty
+#Syncro tickets and alerts can't process PS objects, so we need to make them a string.
+$usersString = $usersPretty | Out-String
 
+Write-Output $usersPretty
+Write-Output "$(get-date -Format 'HH:mm:ss') C:\users is $($UserFolderSizeGB.ToString("#.##")) GB"
 
 if ($ticketNumber) {
     Write-Output "$(get-date -Format 'HH:mm:ss') Adding info to ticket $ticketNumber"
-    Create-Syncro-Ticket-Comment -TicketIdOrNumber $ticketNumber -Subject "Results" -Body "$($env:COMPUTERNAME) `n C:\users is $($UserFolderSizeGB.ToString("#.##")) GB `n $usersPretty" -Hidden $True -DoNotEmail $True
+    Create-Syncro-Ticket-Comment -TicketIdOrNumber $ticketNumber -Subject "Results" -Body "$($env:COMPUTERNAME) `n C:\users is $($UserFolderSizeGB.ToString("#.##")) GB `n $usersString" -Hidden $True -DoNotEmail $True
     Write-Output "$(get-date -Format 'HH:mm:ss') Done updating ticket $ticketNumber"
 }
 
 if ($fireAlert -like "yes") {
     Write-Output "$(get-date -Format 'HH:mm:ss') Creating Alert"
-    Rmm-Alert -Category 'User_Files_Result' -Body "User files Report Below:`n C:\users is $($UserFolderSizeGB.ToString("#.##")) GB `n $($usersPretty.toString())"
+    Rmm-Alert -Category 'User_Files_Result' -Body "User files Report Below:`n C:\users is $($UserFolderSizeGB.ToString("#.##")) GB `n $usersString"
     Write-Output "$(get-date -Format 'HH:mm:ss') Done creating alert"
 }
 

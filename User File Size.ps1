@@ -34,9 +34,9 @@ Write-Output "$(get-date -Format 'HH:mm:ss') Iterating through users"
 foreach($user in $users) {
     $username = $user | Select -ExpandProperty Name;
     Write-Output "$(get-date -Format 'HH:mm:ss') Reviewing $username"
-    $user.userFolderSize = Get-ChildItem -Recurse -Force -errorAction SilentlyContinue C:\users\$username | Measure-Object -Sum Length  -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Sum;;
-    $user.desktopFolderSize = Get-ChildItem -Recurse -Force -errorAction SilentlyContinue C:\users\$username\Desktop | Measure-Object -Sum Length  -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Sum;
-    $user.documentsFolderSize = Get-ChildItem -Recurse -Force -errorAction SilentlyContinue C:\users\$username\Documents | ? {$FilterOut -NotContains $_.Name} | Measure-Object -Sum Length -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Sum;
+    $user.userFolderSize = Get-ChildItem -Recurse -Force -errorAction SilentlyContinue $($user.FullPath) | Measure-Object -Sum Length  -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Sum;;
+    $user.desktopFolderSize = Get-ChildItem -Recurse -Force -errorAction SilentlyContinue $($user.FullPath)\Desktop | Measure-Object -Sum Length  -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Sum;
+    $user.documentsFolderSize = Get-ChildItem -Recurse -Force -errorAction SilentlyContinue $($user.FullPath)\Documents | ? {$FilterOut -NotContains $_.Name} | Measure-Object -Sum Length -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Sum;
 }
 Write-Output "$(get-date -Format 'HH:mm:ss') Done reviewing users"
 

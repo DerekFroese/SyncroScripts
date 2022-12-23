@@ -17,32 +17,32 @@
 Write-Output "$(get-date -Format "HH:mm:ss") Starting Script"   
     $tempFile = "$($env:systemdrive)\windows\temp\wirelessProfile.xml"
 
-    $configXML = @"
-    <?xml version="1.0"?>
-    <WLANProfile xmlns="http://www.microsoft.com/networking/WLAN/profile/v1">
-        <name>$SSID</name>
-	    <SSIDConfig>
-		    <SSID>
-			    <name>$SSID</name>
-		    </SSID>
-	    </SSIDConfig>
-	    <connectionType>ESS</connectionType>
-	    <connectionMode>auto</connectionMode>
-	    <MSM>
-		    <security>
-			    <authEncryption>
-				    <authentication>$Authentication</authentication>
-				    <encryption>$Encryption</encryption>
-				    <useOneX>false</useOneX>
-			    </authEncryption>
-			    <sharedKey>
-				    <keyType>passPhrase</keyType>
-				    <protected>false</protected>
-				    <keyMaterial>$Key</keyMaterial>
-			    </sharedKey>
-		    </security>
-	    </MSM>
-    </WLANProfile>
+$configXML = @"
+<?xml version="1.0"?>
+<WLANProfile xmlns="http://www.microsoft.com/networking/WLAN/profile/v1">
+<name>$SSID</name>
+    <SSIDConfig>
+	    <SSID>
+		    <name>$SSID</name>
+	    </SSID>
+    </SSIDConfig>
+    <connectionType>ESS</connectionType>
+    <connectionMode>auto</connectionMode>
+    <MSM>
+	    <security>
+		    <authEncryption>
+			    <authentication>$Authentication</authentication>
+			    <encryption>$Encryption</encryption>
+			    <useOneX>false</useOneX>
+		    </authEncryption>
+		    <sharedKey>
+			    <keyType>passPhrase</keyType>
+			    <protected>false</protected>
+			    <keyMaterial>$Key</keyMaterial>
+		    </sharedKey>
+	    </security>
+    </MSM>
+</WLANProfile>
 "@
 Write-Output "$(get-date -Format "HH:mm:ss") Saving XML to $tempFile"   
     $configXML | Out-File $tempFile

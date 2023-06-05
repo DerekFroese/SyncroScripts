@@ -17,7 +17,7 @@ Write-Output "$(get-date -Format "HH:mm:ss") Starting Script"
 Import-Module $env:SyncroModule
 
 $Exe = "C:\windows\temp\S1Agent.exe" 
-$Args = "/SITE_TOKEN=$siteToken /SILENT"
+$Args = "--dont_fail_on_config_preserving_failures -t $sitetoken"
 
 if (-not $siteToken) {
     Write-warning "$(get-date -Format "HH:mm:ss") siteToken was not found for this client. Please get your site token from sentinelOne and populate it for this client "

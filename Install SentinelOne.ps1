@@ -18,7 +18,7 @@ Import-Module $env:SyncroModule
 
 $Exe = "C:\windows\temp\S1Agent.exe" 
 #$Args = "/SITE_TOKEN=$siteToken /SILENT" #21.6.4
-#$Args = "--dont_fail_on_config_preserving_failures -t $sitetoken" #old version
+#$Args = "--dont_fail_on_config_preserving_failures -t $sitetoken" #22.1
 $Args = "/Q /NORESTART -t $sitetoken" #22.3.5
 
 if (-not $siteToken) {

@@ -3,7 +3,6 @@
     If there is a change, it fires an RMM Alert
     
     Make a "Text Area" Asset Custom Variable called "Local Admins" https://admin.syncromsp.com/asset_types/173088/asset_fields
-    and load it into this script as $localAdminsString
     If you have a script that installs a local admin account on client machines, 
     make sure it is in the "Setup Scripts" part of your policy so that it will 
     run first and not trip this alert if this script ends up running before that one. 
@@ -12,6 +11,8 @@
 
 Write-Output "$(get-date -Format 'HH:mm:ss') Starting Script"
 Import-Module $env:SyncroModule
+
+$restrictedAdmins = "Domain Users","User","Users","Owner","Guest","Guests","Remote Desktop Users"
 
 $localAdminsArray = $localadminsString.Split("`n")
 Write-Output "**Previous local Administrators** `n$localAdminsString"
@@ -54,6 +55,15 @@ $newLocalAdminsString
 if ($localAdminsString.Length -lt 1) {
     Write-Output "$(get-date -Format 'HH:mm:ss') **Script hasn't run before. Setting Local Admins**"
     Set-Asset-Field -Name "Local Admins" -Value $newLocalAdminsString
+
+    #Check if any of the local admins are in the restricted list
+    foreach($admin in $newLocalAdminsArray) {
+        if ($restrictedAdmins -contains $admin) {
+            Write-Output "$(get-date -Format 'HH:mm:ss') Local Admins contains restricted admin: $admin"
+            rmm-alert -Category "local_administrators_changed" -Body "Local Admins contains restricted admin: $admin"
+        }
+        
+    }
 }
 
 if (($localAdminsString.Length -gt 0) -and (!$comparison)) {

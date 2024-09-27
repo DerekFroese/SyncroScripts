@@ -49,7 +49,7 @@ $localadminsString
 **Current List:** 
 $newLocalAdminsString
 "@
-    rmm-alert -Category "local_administrators_changed" -Body $alertBody
+    rmm-alert -Category "local_administrators" -Body $alertBody
 }
 
 if ($localAdminsString.Length -lt 1) {
@@ -60,7 +60,7 @@ if ($localAdminsString.Length -lt 1) {
     foreach($admin in $newLocalAdminsArray) {
         if ($restrictedAdmins -contains $admin) {
             Write-Output "$(get-date -Format 'HH:mm:ss') Local Admins contains restricted admin: $admin"
-            rmm-alert -Category "local_administrators_changed" -Body "Local Admins contains restricted admin: $admin"
+            rmm-alert -Category "local_administrators" -Body "Local Admins contains restricted admin: $admin"
         }
         
     }
